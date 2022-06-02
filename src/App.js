@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import AddToDo from "./components/AddToDo";
+import ToDoList from "./components/ToDoList";
+import {useSelector} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+    const toDos = useSelector(state => state.todo.toDos);
+
+    return (
+        <div>
+            <AddToDo/>
+            {toDos.length > 0
+                ? <ToDoList/>
+                : <p>do nothing</p>}
+
+        </div>
+
+    );
 }
+
+
 
 export default App;
